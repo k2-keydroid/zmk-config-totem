@@ -60,7 +60,7 @@
             // Row2:  U    I    A    E    ,   |   H    N    T    S    K
             // Row3:  Z    X    C    V    .   |   B    G    J    L    /
             // Pinky: Shift                   |                       -
-            // Thumb: Layer2(NAV)  Layer1(NUM)  BS | Enter  Space  Win
+            // Thumb: Layer2(NAV)  Layer1(NUM)  Space | Enter  BS  Win
             // (2026-07 update: I<->, swap and F<->. swap based on
             //  heatmap analysis + user's subjective comfort. , and . are
             //  now vertically aligned so Shift gives < and > in a column.
@@ -72,7 +72,7 @@
 &kp Q      &kp W      &kp O      &kp F      &kp SEMI          &kp M      &kp R      &kp D      &kp Y      &kp P
 &kp U      &kp I      &kp A      &kp E      &kp COMMA         &kp H      &kp N      &kp T      &kp S      &kp K
 &kp LSHFT  &kp Z      &kp X      &kp C      &kp V      &kp DOT &kp B     &kp G      &kp J      &kp L      &kp FSLH   &kp MINUS
-                       &mo NAV    &mo NUM    &kp BSPC          &kp RET    &kp SPACE  &kp LGUI
+                       &mo NAV    &mo NUM    &kp SPACE         &kp RET    &kp BSPC   &kp LGUI
             >;
         };
 
@@ -83,13 +83,13 @@
             // Row2:  @    &    ^    '    :   |   +    4    5    6    "
             // Row3:  `    ~    |    \    <   |   0    1    2    3    .
             // Pinky: TAB                     |                       =
-            // Thumb: Layer2  Layer1  Shift   |   Enter  Space  Win
+            // Thumb: Layer2  Layer1  Space   |   Enter  Shift  Win
             // ------------------------------------------------------------------
             bindings = <
 &kp LBKT   &kp RBKT   &kp LBRC   &kp RBRC   &kp EXCL          &kp MINUS  &kp N7     &kp N8     &kp N9     &kp FSLH
 &kp AT     &kp AMPS   &kp CARET  &kp SQT    &kp COLON         &kp PLUS   &kp N4     &kp N5     &kp N6     &kp DQT
 &kp TAB    &kp GRAVE  &kp TILDE  &kp PIPE   &kp BSLH   &kp LT &kp N0     &kp N1     &kp N2     &kp N3     &kp DOT    &kp EQUAL
-                       &mo NAV    &mo NUM    &kp LSHFT         &kp RET    &kp SPACE  &kp LGUI
+                       &mo NAV    &mo NUM    &kp SPACE         &kp RET    &kp LSHFT  &kp LGUI
             >;
         };
 
@@ -100,7 +100,7 @@
             // Row2:  Win+Space Ctrl+Space Alt   Tab   --- | ---     Left  Down  Right  ---
             // Row3:  無変換    変換       ---   ---   ---    | Ctrl+F  ---   ---   ---    PgDn
             // Pinky: ESC                                     |                             Del
-            // Thumb: Layer2  Layer1  Shift                   | Enter  Space  Win
+            // Thumb: Layer2  Layer1  Space                   | Enter  Shift  Win
             //
             // Arrow inverted-T on right hand (v4: moved up to home row):
             //   Row1: Up on T-column / Row2: Left(N) Down(T) Right(S)
@@ -109,7 +109,7 @@
 &kp LC(Z)      &kp LC(Y)      &none      &none      &kp LC(P)         &none      &kp HOME   &kp UP     &kp END    &kp PG_UP
 &kp LG(SPACE)  &kp LC(SPACE)  &kp LALT   &kp TAB    &none             &none      &kp LEFT   &kp DOWN   &kp RIGHT  &none
 &kp ESC        &kp INT_MUHENKAN &kp INT_HENKAN &none &none      &none &kp LC(F)  &none      &none      &none      &kp PG_DN  &kp DEL
-                              &mo NAV    &mo NUM    &kp LSHFT         &kp RET    &kp SPACE  &kp LGUI
+                              &mo NAV    &mo NUM    &kp SPACE         &kp RET    &kp LSHFT  &kp LGUI
             >;
         };
 
@@ -120,7 +120,7 @@
             // Row2:  BT_0    BT_1    BT_2    BT_3    BT_4    | ---      Ctrl+C  Ctrl+X  Ctrl+V  F11
             // Row3:  C+A+Del Ctrl+B  Ctrl+I  Ctrl+U  ---     | OUT_TOG  Ctrl+A  Ctrl+S  Ctrl+P  F12
             // Pinky: BT_CLR                                  |                                  Alt+F4
-            // Thumb: Layer2  Layer1  Shift                   | Enter  Space  Win
+            // Thumb: Layer2  Layer1  Space                   | Enter  Shift  Win
             //
             // BT keys (2026-07 update, after first pairing troubleshoot):
             //   BT_SEL 0-4 on left home row: position = profile number, no memorizing.
@@ -134,7 +134,7 @@
 &kp F1         &kp F2     &kp F3     &kp F4     &kp F5            &kp F6     &kp F7     &kp F8     &kp F9     &kp F10
 &bt BT_SEL 0   &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none    &kp LC(C)  &kp LC(X)  &kp LC(V)  &kp F11
 &bt BT_CLR     &kp LC(LA(DEL)) &kp LC(B) &kp LC(I) &kp LC(U) &none &out OUT_TOG &kp LC(A) &kp LC(S) &kp LC(P) &kp F12  &kp LA(F4)
-                          &mo NAV    &mo NUM    &kp LSHFT         &kp RET    &kp SPACE  &kp LGUI
+                          &mo NAV    &mo NUM    &kp SPACE         &kp RET    &kp LSHFT  &kp LGUI
             >;
         };
     };
