@@ -74,6 +74,12 @@
  *   - PgDn: Row3 K-column -> Row2 K-column (was &none). PgUp/PgDn now
  *     stack vertically in the K-column, mirroring the Up/Down pair.
  *     Old Row3 position becomes &none.
+ *
+ * v10 (2026-07): NAV Ctrl added
+ *   - LCTRL on Row2 right of Tab (was &none). Held together with the
+ *     NAV thumb, this enables Ctrl+arrow / Ctrl+Home/End / Ctrl+PgUp/PgDn
+ *     combos (word jump, document jump, browser tab switch) without
+ *     leaving the NAV layer. Also usable as Ctrl+Tab via same-row Tab.
  * ------------------------------------------------------------------
  */
 
@@ -233,7 +239,7 @@
             label = "NAV";
             // ------------------------------------------------------------------
             // Row1:  Ctrl+Z    Ctrl+Y     ---   ---   Ctrl+P | ---     Home  Up    End    PgUp
-            // Row2:  Win+Space Ctrl+Space Alt   Tab   --- | ---     Left  Down  Right  PgDn
+            // Row2:  Win+Space Ctrl+Space Alt   Tab   Ctrl | ---     Left  Down  Right  PgDn
             // Row3:  無変換    変換       ---   ---   ---    | Ctrl+F  ---   ---   ---    ---
             // Pinky: ESC                                     |                             Del
             // Thumb: Layer2  Layer1  Space                   | Enter  Shift  Win
@@ -248,7 +254,7 @@
             // ------------------------------------------------------------------
             bindings = <
 &kp LC(Z)      &kp LC(Y)      &none      &none      &kp LC(P)         &none      &kp HOME   &kp UP     &kp END    &kp PG_UP
-&kp LG(SPACE)  &kp LC(SPACE)  &kp LALT   &kp TAB    &none             &none      &kp LEFT   &kp DOWN   &kp RIGHT  &kp PG_DN
+&kp LG(SPACE)  &kp LC(SPACE)  &kp LALT   &kp TAB    &kp LCTRL         &none      &kp LEFT   &kp DOWN   &kp RIGHT  &kp PG_DN
 &kp ESC        &kp INT_MUHENKAN &kp INT_HENKAN &none &none      &none &kp LC(F)  &none      &none      &none      &none      &kp DEL
                               &mo NAV    &mo NUM_J  &kp SPACE         &kp RET    &kp LSHFT  &kp LGUI
             >;
