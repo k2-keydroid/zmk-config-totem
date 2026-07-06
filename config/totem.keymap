@@ -25,7 +25,7 @@
  *   1: UBASE  - US-mode overlay, toggled via FUNC. Only 3 keys differ from
  *               BASE (see layer comment); everything else is &trans.
  *   2: NUM_J  - Numpad/Symbols for JIS-configured OS (JP_* codes + morphs)
- *   3: NUM_U  - Numpad/Symbols for US-configured OS (plain codes, = v5 NUM)
+ *   3: NUM_U  - Numpad/Symbols for US-configured OS (plain codes)
  *   4: NAV    - Nav/Editing, held via left thumb key 2 (&mo NAV)
  *   5: FUNC   - Fkeys/Special/BT/mode toggle, via NUM+NAV tri-layer
  *
@@ -53,6 +53,22 @@
  *   - Layer state is NOT persistent: after power-off/reset the keyboard
  *     always boots in JIS mode (UBASE off). No visual indicator; verify
  *     mode by typing Shift+; and checking the output.
+ *   - Verified 2026-07: JIS mode on JIS host (all keys), US mode on JIS
+ *     host (expected mojibake pattern = toggle works), US mode on US host
+ *     (all keys). Fully operational in both environments.
+ *
+ * v8 (2026-07): NUM hands swapped + FUNC edit keys rearranged
+ *   - NUM_J/NUM_U: left and right 5x3 blocks swapped. Numbers and
+ *     operators now on the LEFT hand, brackets/symbols on the RIGHT.
+ *     Right-thumb Shift + left-hand numbers is now a two-hand combo.
+ *     Pinky keys (TAB / =) and thumbs unchanged. All mod-morphs move
+ *     with their keys; behavior identical, position only.
+ *   - FUNC: Ctrl+B/I/U <-> Ctrl+C/X/V swapped between hands, and the
+ *     paste group reordered to X,C,V so that each aligns with the BASE
+ *     letter column (Ctrl+X on X, Ctrl+C on C, Ctrl+V on V) - nothing
+ *     new to memorize. Left-hand-only copy/paste now works while the
+ *     right hand stays on the mouse (NUM+NAV thumbs + X/C/V are all
+ *     left-hand). Format keys B/I/U move to right home row.
  * ------------------------------------------------------------------
  */
 
@@ -165,22 +181,25 @@
         layer_num_jis {
             label = "NUM_J";
             // ------------------------------------------------------------------
-            // Row1:  [    ]    {    }    !   |   /    7    8    9    -
-            // Row2:  @    &    ^    '    :   |   *    4    5    6    +
-            // Row3:  `    ~    |    \    <   |   0    1    2    3    .
+            // Row1:  /    7    8    9    -   |   [    ]    {    }    !
+            // Row2:  *    4    5    6    +   |   @    &    ^    '    :
+            // Row3:  0    1    2    3    .   |   `    ~    |    \    <
             // Pinky: TAB                     |                       =
             // (v5: right hand operators rearranged calculator-style.
             //  DQT removed from this layer; type it as Shift + ' instead.
             //  v6: all symbols converted to JP_* codes for JIS OS.
-            //  Shift+number now gives US symbols via mod-morph:
+            //  Shift+number gives US symbols via mod-morph:
             //  Shift+ 2 6 7 8 9 0 -> @ ^ & * ( ) . Shift+ 1 3 4 5 are
-            //  already US-identical on JIS. Shift+ ' ` \ = -> " ~ | +.)
+            //  already US-identical on JIS. Shift+ ' ` \ = -> " ~ | +.
+            //  v8: left/right 5x3 blocks swapped. Numbers+operators on the
+            //  left hand, brackets/symbols on the right. Right-thumb Shift
+            //  + left-hand number is now a comfortable two-hand combo.)
             // Thumb: Layer2  Layer1  Space   |   Enter  Shift  Win
             // ------------------------------------------------------------------
             bindings = <
-&kp JP_LBKT &kp JP_RBKT &kp JP_LBRC &kp JP_RBRC &kp JP_EXCL     &kp FSLH     &mm_7_amps &mm_8_ast  &mm_9_lpar &mm_mins_und
-&kp JP_AT   &kp JP_AMPS &kp JP_CARET &mm_sqt_dqt &kp JP_COLON   &kp JP_ASTRK &kp N4     &kp N5     &mm_6_crt  &kp JP_PLUS
-&kp TAB    &mm_grv_tld &kp JP_TILDE &kp JP_PIPE &mm_bslh_pipe &kp JP_LT &mm_0_rpar &kp N1 &mm_2_at &kp N3    &kp DOT    &mm_eq_plus
+&kp FSLH    &mm_7_amps  &mm_8_ast   &mm_9_lpar  &mm_mins_und    &kp JP_LBKT &kp JP_RBKT &kp JP_LBRC &kp JP_RBRC &kp JP_EXCL
+&kp JP_ASTRK &kp N4     &kp N5      &mm_6_crt   &kp JP_PLUS     &kp JP_AT   &kp JP_AMPS &kp JP_CARET &mm_sqt_dqt &kp JP_COLON
+&kp TAB    &mm_0_rpar  &kp N1      &mm_2_at    &kp N3     &kp DOT &mm_grv_tld &kp JP_TILDE &kp JP_PIPE &mm_bslh_pipe &kp JP_LT &mm_eq_plus
                        &mo NAV    &mo NUM_J  &kp SPACE         &kp RET    &kp LSHFT  &kp LGUI
             >;
         };
@@ -188,19 +207,19 @@
         layer_num_us {
             label = "NUM_U";
             // ------------------------------------------------------------------
-            // Same visual layout as NUM_J, but plain US keycodes (= v5 NUM).
+            // Same visual layout as NUM_J, but plain US keycodes.
             // On a US-configured OS, Shift+number natively produces US
             // symbols, so no mod-morphs are needed here.
-            // Row1:  [    ]    {    }    !   |   /    7    8    9    -
-            // Row2:  @    &    ^    '    :   |   *    4    5    6    +
-            // Row3:  `    ~    |    \    <   |   0    1    2    3    .
+            // Row1:  /    7    8    9    -   |   [    ]    {    }    !
+            // Row2:  *    4    5    6    +   |   @    &    ^    '    :
+            // Row3:  0    1    2    3    .   |   `    ~    |    \    <
             // Pinky: TAB                     |                       =
             // Thumb: Layer2  Layer1  Space   |   Enter  Shift  Win
             // ------------------------------------------------------------------
             bindings = <
-&kp LBKT   &kp RBKT   &kp LBRC   &kp RBRC   &kp EXCL          &kp FSLH   &kp N7     &kp N8     &kp N9     &kp MINUS
-&kp AT     &kp AMPS   &kp CARET  &kp SQT    &kp COLON         &kp ASTRK  &kp N4     &kp N5     &kp N6     &kp PLUS
-&kp TAB    &kp GRAVE  &kp TILDE  &kp PIPE   &kp BSLH   &kp LT &kp N0     &kp N1     &kp N2     &kp N3     &kp DOT    &kp EQUAL
+&kp FSLH   &kp N7     &kp N8     &kp N9     &kp MINUS         &kp LBKT   &kp RBKT   &kp LBRC   &kp RBRC   &kp EXCL
+&kp ASTRK  &kp N4     &kp N5     &kp N6     &kp PLUS          &kp AT     &kp AMPS   &kp CARET  &kp SQT    &kp COLON
+&kp TAB    &kp N0     &kp N1     &kp N2     &kp N3     &kp DOT &kp GRAVE &kp TILDE  &kp PIPE   &kp BSLH   &kp LT     &kp EQUAL
                        &mo NAV    &mo NUM_U  &kp SPACE         &kp RET    &kp LSHFT  &kp LGUI
             >;
         };
@@ -234,8 +253,8 @@
             label = "FUNC";
             // ------------------------------------------------------------------
             // Row1:  F1      F2      F3      F4      F5      | F6       F7      F8      F9      F10
-            // Row2:  BT_0    BT_1    BT_2    BT_3    BT_4    | JIS/US   Ctrl+C  Ctrl+X  Ctrl+V  F11
-            // Row3:  C+A+Del Ctrl+B  Ctrl+I  Ctrl+U  ---     | OUT_TOG  Ctrl+A  Ctrl+S  Ctrl+P  F12
+            // Row2:  BT_0    BT_1    BT_2    BT_3    BT_4    | JIS/US   Ctrl+B  Ctrl+I  Ctrl+U  F11
+            // Row3:  C+A+Del Ctrl+X  Ctrl+C  Ctrl+V  ---     | OUT_TOG  Ctrl+A  Ctrl+S  Ctrl+P  F12
             // Pinky: BT_CLR                                  |                                  Alt+F4
             // Thumb: Layer2  Layer1  Space                   | Enter  Shift  Win
             //
@@ -245,16 +264,20 @@
             //   grouped in the far-left corner. Alt+F4 stays on right outer-pinky.
             //   BT_CLR clears pairing of CURRENT profile only.
             //   OUT_TOG (USB/BLE output toggle) on right H-column bottom.
-            //   Edit keys: Ctrl+C/X/V on right home row, Ctrl+A/S/P below them.
             // v7: JIS/US mode toggle (&tog UBASE) on right H-column Row2,
             //   directly above OUT_TOG: output-related toggles share a column.
             //   Defaults to JIS mode on every power-up (layer state is not
             //   persisted). Quick mode check: type Shift+; and see what comes out.
+            // v8: Ctrl+X/C/V moved to LEFT Row3, aligned with the BASE letter
+            //   columns (Ctrl+X on X, Ctrl+C on C, Ctrl+V on V - zero
+            //   memorization). Left-hand-only copy/paste while the right hand
+            //   is on the mouse. Ctrl+B/I/U (format keys) moved to right
+            //   home row where Ctrl+C/X/V used to be.
             // ------------------------------------------------------------------
             bindings = <
 &kp F1         &kp F2     &kp F3     &kp F4     &kp F5            &kp F6      &kp F7     &kp F8     &kp F9     &kp F10
-&bt BT_SEL 0   &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &tog UBASE &kp LC(C)  &kp LC(X)  &kp LC(V)  &kp F11
-&bt BT_CLR     &kp LC(LA(DEL)) &kp LC(B) &kp LC(I) &kp LC(U) &none &out OUT_TOG &kp LC(A) &kp LC(S) &kp LC(P) &kp F12  &kp LA(F4)
+&bt BT_SEL 0   &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &tog UBASE &kp LC(B)  &kp LC(I)  &kp LC(U)  &kp F11
+&bt BT_CLR     &kp LC(LA(DEL)) &kp LC(X) &kp LC(C) &kp LC(V) &none &out OUT_TOG &kp LC(A) &kp LC(S) &kp LC(P) &kp F12  &kp LA(F4)
                           &mo NAV    &mo NUM_J  &kp SPACE         &kp RET    &kp LSHFT  &kp LGUI
             >;
         };
