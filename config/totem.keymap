@@ -80,6 +80,16 @@
  *     NAV thumb, this enables Ctrl+arrow / Ctrl+Home/End / Ctrl+PgUp/PgDn
  *     combos (word jump, document jump, browser tab switch) without
  *     leaving the NAV layer. Also usable as Ctrl+Tab via same-row Tab.
+ *
+ * v11 (2026-07): NAV Ctrl+P -> CapsLock
+ *   - Row1 ';'-column: &kp LC(P) -> &kp CAPS. Print is still available
+ *     on FUNC (right hand Row3), so nothing is lost.
+ *   - NOTE for JIS hosts: Windows with the Japanese keyboard layout
+ *     traditionally requires Shift+CapsLock (the 英数 key behaviour) to
+ *     toggle caps; plain HID 0x39 may do nothing depending on the
+ *     Windows version and IME state. If the key appears dead on the
+ *     JIS-configured PC, change this binding to &kp LS(CAPS) - or use a
+ *     mod-morph if both hosts need to be covered by one binding.
  * ------------------------------------------------------------------
  */
 
@@ -238,7 +248,7 @@
         layer_nav {
             label = "NAV";
             // ------------------------------------------------------------------
-            // Row1:  Ctrl+Z    Ctrl+Y     ---   ---   Ctrl+P | ---     Home  Up    End    PgUp
+            // Row1:  Ctrl+Z    Ctrl+Y     ---   ---   CapsLk | ---     Home  Up    End    PgUp
             // Row2:  Win+Space Ctrl+Space Alt   Tab   Ctrl | ---     Left  Down  Right  PgDn
             // Row3:  無変換    変換       ---   ---   ---    | Ctrl+F  ---   ---   ---    ---
             // Pinky: ESC                                     |                             Del
@@ -253,7 +263,7 @@
             //  reachable in both modes with either press order.)
             // ------------------------------------------------------------------
             bindings = <
-&kp LC(Z)      &kp LC(Y)      &none      &none      &kp LC(P)         &none      &kp HOME   &kp UP     &kp END    &kp PG_UP
+&kp LC(Z)      &kp LC(Y)      &none      &none      &kp CAPS          &none      &kp HOME   &kp UP     &kp END    &kp PG_UP
 &kp LG(SPACE)  &kp LC(SPACE)  &kp LALT   &kp TAB    &kp LCTRL         &none      &kp LEFT   &kp DOWN   &kp RIGHT  &kp PG_DN
 &kp ESC        &kp INT_MUHENKAN &kp INT_HENKAN &none &none      &none &kp LC(F)  &none      &none      &none      &none      &kp DEL
                               &mo NAV    &mo NUM_J  &kp SPACE         &kp RET    &kp LSHFT  &kp LGUI
